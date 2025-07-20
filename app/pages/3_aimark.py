@@ -8,16 +8,16 @@ from core_functions import load_llm, get_content_generation_chain
 
 load_dotenv()
 
-# --- CONFIGURAÇÃO DA PÁGINA E CARREGAMENTO DA LÓGICA ---
+# --- CONFIGURAÇÃO DA PÁGINA E CARREGAMENTO DA LÓGICA
 st.set_page_config(page_title="Gerador de Conteúdo 🤖", page_icon="🤖", layout="wide")
 st.title("🤖 Gerador de Conteúdo com IA")
 st.markdown("Use o painel à esquerda para configurar os detalhes e gerar conteúdo otimizado para suas redes.")
 
-# Carregando o llm e a chain uma única vez
+# Carregando o llm e a chain uma única vez usando o cache
 llm = load_llm()
 content_chain = get_content_generation_chain(llm)
 
-# --- LAYOUT DA PÁGINA ---
+# --- LAYOUT DA PÁGINA
 left_column, right_column = st.columns([2, 3])
 
 with left_column:
@@ -60,8 +60,10 @@ with right_column:
                 
                 st.header("Conteúdo Gerado:")
                 with st.spinner("Criando..."):
-                    # Usamos a 'content_chain' que já está pronta e em cache.
+                    # Usamos a 'content_chain' que já está pronta e em cache. com o prompt formulado com o modo .stream em vez do .invoke
                     response_stream = content_chain.stream({"prompt": prompt}) 
+                    
+                    # Mostra na tela a resposta da chain
                     st.write_stream(response_stream)
         else:
             # Mensagem inicial para preencher o container
