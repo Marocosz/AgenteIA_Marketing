@@ -1,0 +1,185 @@
+[
+  {
+    "name": "Ana Clara Santos",
+    "area": "Desenvolvimento",
+    "summary": "Profissional com 4 anos de experiência em desenvolvimento de software, especializada em soluções web completas, com habilidades em React, Vue.js, Node.js e Django. Possui experiência em liderança técnica, integração de microsserviços e desenvolvimento de projetos open-source.",
+    "skills": [
+      "React",
+      "Vue.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Java (Spring Boot)",
+      "Python (Django)",
+      "PostgreSQL",
+      "Firebase",
+      "Redis",
+      "Docker",
+      "Kubernetes",
+      "AWS (Lambda, RDS)",
+      "Jenkins",
+      "Jest",
+      "Cypress",
+      "Selenium",
+      "Figma",
+      "Postman",
+      "VS Code"
+    ],
+    "education": "Bacharelado em Sistemas de Informação pela PUC-Rio e Curso Técnico em Informática pela FAETEC.",
+    "interview_questions": [
+      "Pode nos contar mais sobre sua experiência em liderança técnica na NexTech Solutions?",
+      "Como você gerencia a integração de microsserviços usando Docker e Kubernetes?",
+      "Você poderia explicar o processo de refatoração de código legado que mencionou?"
+    ],
+    "strengths": [
+      "Experiência em desenvolvimento full-stack com tecnologias relevantes",
+      "Projetos pessoais e contribuições open-source",
+      "Certificações relevantes em Java e Azure",
+      "Experiência em ambientes ágeis e colaboração em equipe",
+      "Habilidades em UX/UI e boas práticas de desenvolvimento"
+    ],
+    "areas_for_development": [
+      "Profundidade em Python pode ser aprimorada",
+      "Experiência específica com SQL pode ser mais explorada"
+    ],
+    "important_considerations": [
+      "Verificar profundidade em Python e SQL",
+      "Verificar experiência específica com serviços de nuvem mencionados"
+    ],
+    "final_recommendations": "Ana Clara tem um perfil altamente alinhado com a vaga, apresentando habilidades técnicas relevantes e experiência prática em projetos significativos. Recomendamos prosseguir com a entrevista para explorar melhor suas habilidades e experiências.",
+    "score": 9.2
+  },
+  {
+    "name": "Alex Costa",
+    "area": "Desenvolvimento",
+    "summary": "Profissional com 5 anos de experiência integrando design, desenvolvimento front-end e estratégias de marketing digital, buscando aprimorar habilidades em design de interfaces complexas.",
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Photoshop",
+      "Illustrator",
+      "Prototipagem Interativa",
+      "HTML/CSS",
+      "JavaScript",
+      "React.js",
+      "Vue.js",
+      "SASS",
+      "Node.js",
+      "Firebase",
+      "Google Analytics",
+      "SEO",
+      "WordPress",
+      "Shopify",
+      "Mailchimp",
+      "Git",
+      "Webpack",
+      "Jira",
+      "Zeplin",
+      "A/B Testing"
+    ],
+    "education": "Bacharelado em Design Digital pela Universidade Federal do Paraná (UFPR) e Curso Técnico em Marketing Digital pelo Instituto de Tecnologia e Design (ITEDE).",
+    "interview_questions": [
+      "Pode nos contar sobre um projeto onde utilizou Node.js e Firebase? Qual foi o seu papel?",
+      "Como você garantiria a escalabilidade de uma aplicação web?",
+      "Descreva uma situação onde teve que colaborar estreitamente com uma equipe multidisciplinar para entregar um projeto."
+    ],
+    "strengths": [
+      "Forte experiência em front-end com React e Vue.js",
+      "Conhecimento em design de interfaces e sistemas de design",
+      "Certificações relevantes em UX Design e JavaScript",
+      "Experiência em SEO e marketing digital"
+    ],
+    "areas_for_development": [
+      "Experiência limitada em tecnologias back-end como Python e Django",
+      "Falta de experiência comprovada em serviços de nuvem (AWS, GCP)",
+      "Necessidade de aprofundar habilidades em SQL"
+    ],
+    "important_considerations": [
+      "Verificar profundidade do conhecimento em Node.js e Firebase",
+      "Evaluating experience with cloud platforms and scalability",
+      "Checking for experience with Agile methodologies"
+    ],
+    "final_recommendations": "Recomendamos que Alex continue desenvolvendo suas habilidades em tecnologias back-end e serviços de nuvem. No momento, ele está mais alinhado com um papel front-end, mas com investimento adicional, pode ser considerado para vagas Full Stack.",
+    "score": 6.8
+  },
+  {
+    "name": "Thomas A. Anderson",
+    "area": "Desenvolvimento",
+    "summary": "Profissional de tecnologia com 5 anos de experiência em desenvolvimento de software e análise de dados, buscando ingressar no curso de Pós-Graduação em Ciência de Dados e Inteligência Artificial para ampliar conhecimentos em machine learning e big data. Comprometido em aplicar habilidades técnicas em projetos inovadores e contribuir para soluções orientadas por dados.",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "React",
+      "Node.js",
+      "Django",
+      "MySQL",
+      "MongoDB",
+      "PostgreSQL",
+      "Git",
+      "Docker",
+      "Jupyter Notebook",
+      "Power BI",
+      "AWS",
+      "Google Cloud Platform",
+      "Pandas",
+      "NumPy",
+      "Tableau"
+    ],
+    "education": "Bacharelado em Ciência da Computação pela Universidade de São Paulo (USP), com TCC em 'Otimização de Algoritmos de Machine Learning para Previsão de Demanda em Varejo' e participação em grupo de pesquisa em inteligência artificial.",
+    "interview_questions": [
+      "Pode nos contar mais sobre seu projeto de Sistema de Recomendação para E-commerce e como você implementou o modelo de ML?",
+      "Como você lidou com a integração de sistemas de pagamento durante seu trabalho como freelancer?",
+      "Qual foi o maior desafio que você enfrentou ao trabalhar com equipes ágeis e como você o superou?"
+    ],
+    "strengths": [
+      "Experiência prática com as tecnologias requeridas pela vaga",
+      "Certificações relevantes em AWS e Scrum",
+      "Projetos pessoais e contribuições significativas em freelances"
+    ],
+    "areas_for_development": [
+      "Experiência ainda limitada em ambientes de grande escala",
+      "Necessidade de aprofundar conhecimentos em big data e machine learning"
+    ],
+    "important_considerations": [
+      "Verificar a profundidade do conhecimento em React e Django",
+      "Validar a experiência prática com serviços de nuvem"
+    ],
+    "final_recommendations": "O candidato apresenta um perfil altamente alinhado com os requisitos da vaga, com experiência relevante e habilidades técnicas adequadas. Recomendamos prosseguir com a etapa de entrevista técnica e prática para avaliar melhor sua capacidade de resolver problemas e trabalhar em equipe.",
+    "score": 8.5
+  },
+  {
+    "name": "Marco Rodrigo",
+    "area": "Desenvolvimento",
+    "summary": "Desenvolvedor Full Stack com experiência em Python, Flask, PostgreSQL e projetos pessoais envolvendo IA e automação. Cursando Gestão da Informação com formação técnica em Eletrônica.",
+    "skills": [
+      "Python Avançado",
+      "Banco de Dados SQL e NoSQL",
+      "Inglês (Intermediário)",
+      "Frameworks (Flask, Pandas, Scipy, LangChain, Discord.py, FastAPI, SQLModel)"
+    ],
+    "education": "Ensino Médio Integrado ao Curso Técnico em Eletrônica - IFTM Campus Patrocínio (2019 - 2021); Graduando em Gestão da Informação - Universidade Federal de Uberlândia - 7º período (2022 - ...)",
+    "interview_questions": [
+      "Pode nos contar mais sobre o projeto de análise de contratos com IA e como você lidou com os desafios técnicos?",
+      "Como você gerencia o versionamento de código e testes em seus projetos?",
+      "Você tem experiência com serviços de nuvem como AWS ou Google Cloud Platform? Se sim, pode dar um exemplo?"
+    ],
+    "strengths": [
+      "Experiência prática em desenvolvimento Full Stack",
+      "Projetos pessoais relevantes e inovadores",
+      "Formação técnica complementar à área de desenvolvimento"
+    ],
+    "areas_for_development": [
+      "Falta de experiência mencionada com React ou Node.js",
+      "Nenhuma menção a serviços de nuvem específicos",
+      "Limitação na experiência com metodologias Ágeis"
+    ],
+    "important_considerations": [
+      "Necessidade de verificação de experiência prática com front-end",
+      "Experiência com serviços de nuvem não explicitada",
+      "Nível de proficiência em inglês pode ser um fator dependendo do contexto da vaga"
+    ],
+    "final_recommendations": "Candidato apresenta um perfil forte para o cargo, com experiência relevante e projetos pessoais que demonstram habilidades técnicas. No entanto, é recomendável avaliar sua proficiência em front-end e experiência com serviços de nuvem em uma entrevista técnica.",
+    "score": 7.5
+  }
+]
