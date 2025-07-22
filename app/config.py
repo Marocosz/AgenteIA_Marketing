@@ -47,26 +47,26 @@ CV_REQUIRED_FIELDS  = [
 ]
 
 JOB_DETAILS = {}
-JOB_DETAILS['title'] = "Desenvolvedor(a) Full Stack"
-JOB_DETAILS['description'] = "Estamos em busca de um(a) Desenvolvedor(a) Full Stack para integrar o time de tecnologia da nossa empresa, atuando em projetos estratégicos com foco em soluções escaláveis e orientadas a dados. O(a) profissional será responsável por desenvolver, manter e evoluir aplicações web robustas, além de colaborar com times multidisciplinares para entregar valor contínuo ao negócio."
+JOB_DETAILS['title'] = "Analista de Dados"
+JOB_DETAILS['description'] = "Estamos em busca de um(a) Analista de Dados para integrar o time de tecnologia da nossa empresa, atuando em projetos estratégicos com foco em soluções escaláveis e orientadas a dados. O(a) profissional será responsável por analisar grandes volumes de dados, gerar insights e construir dashboards para apoiar a tomada de decisão, além de colaborar com times multidisciplinares para entregar valor contínuo ao negócio."
 JOB_DETAILS['details'] = """
 Atividades:
-- Desenvolver e manter aplicações web em ambientes modernos, utilizando tecnologias back-end e front-end.
-- Trabalhar com equipes de produto, UX e dados para entender demandas e propor soluções.
-- Criar APIs, integrações e dashboards interativos.
-- Garantir boas práticas de versionamento, testes e documentação.
-- Participar de revisões de código, deploys e melhorias contínuas na arquitetura das aplicações.
+- Desenvolver e manter pipelines de dados e processos de ETL.
+- Trabalhar com equipes de produto, marketing e operações para entender demandas e propor análises.
+- Criar relatórios, dashboards interativos e visualizações de dados.
+- Garantir boas práticas de qualidade, governança e documentação dos dados.
+- Participar de análises exploratórias, testes de hipóteses e melhorias contínuas na cultura de dados da empresa.
 
 Pré-requisitos:
-- Sólidos conhecimentos em Python, JavaScript e SQL.
-- Experiência prática com frameworks como React, Node.js e Django.
-- Familiaridade com versionamento de código usando Git.
-- Experiência com serviços de nuvem, como AWS e Google Cloud Platform.
-- Capacidade de trabalhar em equipe, com boa comunicação e perfil colaborativo.
+- Sólidos conhecimentos em SQL, Python (com bibliotecas como Pandas e NumPy) e Excel avançado.
+- Experiência prática com ferramentas de Business Intelligence como Power BI, Tableau ou Looker.
+- Familiaridade com bancos de dados relacionais e não relacionais.
+- Experiência com análise estatística e modelagem de dados.
+- Capacidade de traduzir dados complexos em insights acionáveis, com boa comunicação e perfil colaborativo.
 
 Diferenciais:
-- Conhecimento em Power BI ou outras ferramentas de visualização de dados.
+- Conhecimento em serviços de nuvem, como AWS (S3, Redshift) ou Google Cloud Platform (BigQuery).
 - Experiência anterior em ambientes ágeis (Scrum, Kanban).
-- Projetos próprios, contribuições open source ou portfólio técnico disponível.
-- Certificações em nuvem ou áreas relacionadas à engenharia de software.
+- Conhecimento em ferramentas de versionamento como Git.
+- Certificações em análise de dados ou áreas relacionadas.
 """

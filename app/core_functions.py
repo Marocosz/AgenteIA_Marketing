@@ -132,8 +132,9 @@ def config_rag_chain(_llm, _retriever):
 @st.cache_resource
 def get_cv_analysis_chain(_llm):
     """Cria e armazena em cache a chain para análise de currículos."""
-    chain = CV_PROMPT_TEMPLATE | _llm | StrOutputParser() # Adicionado o StrOutputParser
+    chain = CV_PROMPT_TEMPLATE | _llm | StrOutputParser()
     return chain
+
 
 def parse_doc(file_path):
     """Converte um documento (PDF, DOCX) para Markdown."""
@@ -141,68 +142,85 @@ def parse_doc(file_path):
     result = converter.convert(file_path)
     return result.document.export_to_markdown()
 
+
 def parse_res_llm(response_text: str, required_fields: list) -> dict:
     """Extrai um objeto JSON da resposta de texto do LLM."""
+    # Required_fields: uma lista com os nomes das chaves que esperamos no JSON
     try:
         if "</think>" in response_text:
+            # Pega a parte que a IA respondeu de fato, mas não o Thinking mode
             response_text = response_text.split("</think>")[-1].strip()
-        
-        start_idx = response_text.find('{')
-        end_idx = response_text.rfind('}') + 1
-        
+
+        start_idx = response_text.find('{')  # Inicio do tipo json dentro do response_text
+        end_idx = response_text.rfind('}') + 1  # Fim do tipo json dentro do response_text
+
         if start_idx == -1 or end_idx == 0:
             st.error("Nenhum JSON válido encontrado na resposta do modelo.")
-            return None # Retorna None em caso de erro
+            return None
 
+        # Recortamos o texto apenas na parte json dele
         json_str = response_text[start_idx:end_idx]
-        info_cv = json.loads(json_str)
+        info_cv = json.loads(json_str)  # Aqui de fato transformamos a str que parece um json em json
 
+        # Para cada campo, ele verifica se o modelo de linguagem se esqueceu de incluí-lo no JSON.
+        # Se não ter no json, ele adiciona o valor "N/A"
         for field in required_fields:
             if field not in info_cv:
-                info_cv[field] = "N/A" # Preenche campos ausentes
+                info_cv[field] = "N/A"  # Preenche campos ausentes
+
         return info_cv
+
     except json.JSONDecodeError:
         st.error("Erro ao decodificar o JSON da resposta do modelo.")
-        return None # Retorna None em caso de erro
+        return None  # Retorna None em caso de erro
+
 
 def save_json_cv(new_data, path_json, key_name="name"):
     """Salva os dados de um novo currículo em um arquivo JSON, evitando duplicatas."""
-    if os.path.exists(path_json):
+    if os.path.exists(path_json):  # Se exister o arquivo json
+        # Se existir, vai abrir ele e carrega, se não, cria a lista
         with open(path_json, "r", encoding="utf-8") as f:
             try:
                 data = json.load(f)
             except json.JSONDecodeError:
-                data = [] # Se o arquivo estiver corrompido/vazio, começa uma nova lista
+                data = []  # Se o arquivo estiver corrompido/vazio, começa uma nova lista
     else:
         data = []
 
     if not isinstance(data, list):
-        data = [] # Garante que estamos trabalhando com uma lista
+        data = []  # Garante que estamos trabalhando com uma lista
 
+    # Cria uma lista com os key_name que estão dentro do data
     candidates = [entry.get(key_name) for entry in data]
+
+    # Verifica se já existe aquele currículo na nossa lista de candidatos
     if new_data.get(key_name) in candidates:
-        st.warning(f"Currículo '{new_data.get(key_name)}' já registrado. Ignorando.")
+        st.warning(
+            f"Currículo '{new_data.get(key_name)}' já registrado. Ignorando.")
         return
 
-    data.append(new_data)
+    data.append(new_data)  # Adiciona o novo curriculo na lista
+
+    # Reescreve o arquivo json com as informações dos novos candidatos
     with open(path_json, "w", encoding="utf-8") as f:
+        # json.dump para converter o objeto python em json
         json.dump(data, f, indent=2, ensure_ascii=False)
+
 
 def show_cv_result(result: dict):
     """Formata os dados extraídos do CV em uma string Markdown para exibição."""
     md = f"### 📄 Análise e Resumo do Currículo\n"
-    
+
     # Usar .get() é uma prática mais segura para evitar erros se uma chave não existir
-    if result.get("name"): 
+    if result.get("name"):
         md += f"- **Nome:** {result.get('name', 'N/A')}\n"
-    if result.get("area"): 
+    if result.get("area"):
         md += f"- **Área de Atuação:** {result.get('area', 'N/A')}\n"
-    if result.get("summary"): 
+    if result.get("summary"):
         md += f"- **Resumo do Perfil:** {result.get('summary', 'N/A')}\n"
-    if result.get("skills"): 
+    if result.get("skills"):
         md += f"- **Competências:** {', '.join(result.get('skills', []))}\n"
-    
-    # --- AQUI ESTÃO OS CAMPOS QUE FALTAVAM ---
+
     if result.get("interview_questions"):
         md += f"- **Perguntas sugeridas:**\n"
         md += "\n".join([f"  - {q}" for q in result.get("interview_questions", [])]) + "\n"
@@ -217,30 +235,34 @@ def show_cv_result(result: dict):
         md += "\n".join([f"  - {i}" for i in result.get("important_considerations", [])]) + "\n"
     if result.get("final_recommendations"):
         md += f"- **Conclusão e recomendações:** {result.get('final_recommendations', 'N/A')}\n"
-        
+
     return md
 
+
 def save_job_to_csv(data, filename):
-    """Salva a descrição da vaga em um CSV."""
+    """Salva a descrição da vaga em um CSV, SOBRESCREVENDO o arquivo."""
     headers = ['title', 'description', 'details']
-    file_exists = os.path.exists(filename)
-    with open(filename, 'a', newline='', encoding='utf-8') as f:
+    # Abre o arquivo em modo de escrita ('w'), que apaga o conteúdo anterior
+    with open(filename, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=headers, delimiter=';')
-        if not file_exists:
-            writer.writeheader()
+        # Como estamos sempre sobrescrevendo, sempre escrevemos o cabeçalho
+        writer.writeheader()
         writer.writerow(data)
 
-def load_job(csv_path):
-    """Carrega a última vaga salva do CSV."""
-    try:
-        df = pd.read_csv(csv_path, sep=';', encoding='utf-8')
-        if df.empty:
-            return "Nenhuma vaga registrada."
-        job = df.iloc[-1]
-        prompt_text = f"**Vaga para {job['title']}**\n\n**Descrição:**\n{job['description']}\n\n**Detalhes:**\n{job['details']}"
-        return prompt_text.strip()
-    except FileNotFoundError:
-        return "Arquivo de vagas não encontrado."
+
+def format_job_details(job_dict):
+    """Formata o dicionário de detalhes da vaga em uma string para o prompt."""
+    if not all(k in job_dict for k in ['title', 'description', 'details']):  # Apenas retorna true se todas verificações forem 
+        return "Detalhes da vaga incompletos."
+    
+    # Faz o prompt de acordo com o job
+    prompt_text = (
+        f"**Vaga para {job_dict['title']}**\n\n"
+        f"**Descrição:**\n{job_dict['description']}\n\n"
+        f"**Detalhes:**\n{job_dict['details']}"
+    )
+    return prompt_text.strip()  # Strip para remover espaços em branco 
+
 
 def display_json_table(path_json):
     """Carrega o JSON e o converte em um DataFrame do Pandas para exibição."""
@@ -249,4 +271,4 @@ def display_json_table(path_json):
             data = json.load(f)
         return pd.DataFrame(data)
     except (FileNotFoundError, json.JSONDecodeError):
-        return pd.DataFrame() # Retorna um DataFrame vazio em caso de erro
+        return pd.DataFrame()  # Retorna um DataFrame vazio em caso de erro
