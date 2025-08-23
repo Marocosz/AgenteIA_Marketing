@@ -63,18 +63,24 @@ if uploaded_files:
     for single_upload in uploaded_files:
         # Abre um warning
         with st.spinner(f"Analisando: {single_upload.name}..."):
-            temp_path = os.path.join(".", single_upload.name) # Define
-            with open(temp_path, "wb") as f:
-                f.write(single_upload.read())
+            temp_path = os.path.join(".", single_upload.name) # Indica aonde o single_upload é pra ser salvo
+            
+            with open(temp_path, "wb") as f:  # Abre o local do cache
+                f.write(single_upload.read())  # Le o conteudo do curriculo
 
-            content = parse_doc(temp_path)
+            content = parse_doc(temp_path)  # Le o arquivo temporário que acabamos de criar e o transforma em markdown com a função
+            
+            # Aqui é onde chamamos a chain da IA com os devidos esquemas de prompt
             output = cv_chain.invoke({
                 "schema": CV_SCHEMA, "cv": content, "job": job_details_text, "prompt_score": CV_PROMPT_SCORE
             })
+            
+            # Aqui pegamos a resposta da IA e extraimos o JSON limpo e formatado
             structured_data = parse_res_llm(output, CV_REQUIRED_FIELDS)
 
             if structured_data:
-                save_json_cv(structured_data, path_json=CV_JSON_FILE, key_name="name")
+                save_json_cv(structured_data, path_json=CV_JSON_FILE, key_name="name")  # Salvamos o json para um arquivo (curriculos.json)
+                
                 st.success(f"'{structured_data.get('name', single_upload.name)}' analisado com sucesso!")
                 st.session_state.selected_cv = structured_data
             else:
@@ -83,14 +89,14 @@ if uploaded_files:
             os.remove(temp_path)
 
     # Reseta o uploader e força o reinício APENAS UMA VEZ, após o loop
-    st.session_state.uploader_key = str(uuid.uuid4())
-    st.rerun()
+    st.session_state.uploader_key = str(uuid.uuid4()) # Gera um nove id aleatorio pra seção de upload de arquivos e ai, reseta
 
 
-# --- SEÇÃO DE EXIBIÇÃO DOS CURRÍCULOS (VERSÃO ÚNICA E CORRETA) ---
-if os.path.exists(CV_JSON_FILE):
+# --- SEÇÃO DE EXIBIÇÃO DOS CURRÍCULOS
+if os.path.exists(CV_JSON_FILE):  # Se o json existir
     st.subheader("Lista de currículos analisados", divider="gray")
     
+    # Cria a tabela de acordo com json file
     df = display_json_table(CV_JSON_FILE)
 
     if not df.empty:
@@ -124,10 +130,11 @@ if os.path.exists(CV_JSON_FILE):
 
         # Adiciona a tabela de visão geral e o botão de download
         st.subheader("Visão Geral em Tabela", divider="gray")
-        st.dataframe(df, height=400) # Dataframe com altura definida
+        st.dataframe(df) # Dataframe com altura definida
 
         with open(CV_JSON_FILE, "r", encoding="utf-8") as f:
             json_data = f.read()
+            
         st.download_button(
             label="📥 Baixar arquivo .json com todos os candidatos",
             data=json_data,
